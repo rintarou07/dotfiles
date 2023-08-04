@@ -1,0 +1,198 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "custom/arch",
+    "wlr/workspaces",
+    "custom/spotify",
+    "cava"
+  ],
+  "modules-center": [
+    "clock",
+    "clock#2",
+    "custom/weather"
+  ],
+  "modules-right": [
+    "network",
+    "network#2",
+    "pulseaudio",
+    "disk",
+    "memory",
+    "cpu",
+    "bluetooth",
+    "tray",
+    "custom/notification"
+  ],
+  "margin-top": 2,
+  "margin-left": 15,
+  "margin-right": 15,
+  "custom/arch": {
+    "format": " <span color=\"#5E81AC\"> </span>",
+    "tooltip": false,
+    "on-click": "sh $HOME/.config/rofi/powermenu/type-2/powermenu.sh"
+  },
+  "wlr/workspaces": {
+    "format": "<span color=\"#FABD2F\">{icon}</span>",
+    "tooltip": false,
+    "all-outputs": false,
+    "current-only": true,
+    "sort-by-number": true,
+    "persistent_workspaces": {
+      "1": [
+        "HDMI-A-1"
+      ],
+      "2": [
+        "HDMI-A-1"
+      ],
+      "3": [
+        "HDMI-A-1"
+      ],
+      "4": [
+        "HDMI-A-1"
+      ],
+      "5": [
+        "HDMI-A-1"
+      ],
+      "6": [
+        "HDMI-A-1"
+      ],
+      "7": [
+        "HDMI-A-1"
+      ],
+      "8": [
+        "HDMI-A-1"
+      ],
+      "9": [
+        "HDMI-A-1"
+      ],
+      "10": [
+        "HDMI-A-1"
+      ]
+    },
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
+    }
+  },
+  "clock": {
+    "format": "<span color=\"#ed8796\"></span>  {:%H:%M}"
+  },
+  "clock#2": {
+    "format": "<span color=\"#a6da95\"></span>  {:%d.%m.%Y}"
+  },
+  "pulseaudio": {
+    "on-click": "exec pavucontrol",
+    "format": "<span color=\"#f5a97f\"> {icon}</span> {volume}%",
+    "format-muted": " ",
+    "tooltip": false,
+    "format-icons": {
+      "headphone": "",
+      "default": [
+        "",
+        "",
+        "󰕾",
+        "󰕾",
+        "󰕾",
+        "",
+        "",
+        ""
+      ]
+    },
+    "scroll-step": 1
+  },
+  "bluetooth": {
+    "format": "<span color='#b4befe'></span> {status}",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": "<span color=\"#8aadf4\"></span> {num_connections}",
+    "tooltip-format": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}   {device_address}"
+  },
+  "network": {
+    "interface": "eno1",
+    "interval": 2,
+    "format": "{ifname}",
+    "format-ethernet": "<span color=\"#c6a0f6\"> 󰁝</span> {bandwidthUpBytes}",
+    "min-length": 13,
+    "format-disconnected": "󰖪 No Network",
+    "tooltip": false
+  },
+  "network#2": {
+    "interface": "eno1",
+    "interval": 2,
+    "format": "{ifname}",
+    "format-ethernet": "<span color=\"#91d7e3\"> 󰁅</span> {bandwidthDownBytes}",
+    "min-length": 13,
+    "format-disconncted": "󰖪 No Network",
+    "tooltip": false
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "format-charging": "> {capacity}%",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "<span color=\"#8bd5ca\"></span>{usage:3}%",
+    "min-length": 8
+  },
+  "memory": {
+    "interval": 10,
+    "format": "<span color=\"#a6da95\">󱤓</span>{used:6} GiB",
+    "min-length": 3
+  },
+  "disk": {
+    "interval": 1,
+    "format": "<span color=\"#FB4934\"></span> {free}"
+  },
+  "custom/spotify": {
+    "exec": "/usr/bin/python3 ~/.config/waybar/mediaplayer.py --player spotify",
+    "format": "<span color=\"#1ED760\"></span>  {}",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  "custom/weather": {
+    "format": "{} °C",
+    "tooltip": true,
+    "interval": 3600,
+    "exec": "wttrbar --date-format %d-%m-%Y --hide-conditions --location chemnitz",
+    "return-type": "json"
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 20
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  }
+}
